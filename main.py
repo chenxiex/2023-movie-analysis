@@ -35,12 +35,15 @@ def movies_get():
         match=re.search(r'/movie/(\d+)',url)
         if match:
             movie_id=match.group(1)
-            new_url='https://movie.douban.com/subject/'+movie_id
-            if not os.path.exists('data/movie'+str(i)+'.html') :
-                url_get(new_url,'data/movie'+str(i)+'.html')
+            movie_douban(movie_id)
             i+=1
         if i==10:
             break
+
+def movie_douban(movie_id):
+    new_url='https://movie.douban.com/subject/'+movie_id
+    if not os.path.exists('data/movie'+str(i)+'.html') :
+        url_get(new_url,'data/movie'+str(i)+'.html')
 
 def boxoffice_get(title):
     # 获取对应的猫眼票房页
